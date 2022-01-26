@@ -1,6 +1,6 @@
 # lucky-boy
 
-年会抽奖程序
+年会抽奖程序。 [体验地址](http://www.taojunnan.com/lucky-boy/)
 
 ## 功能
 按 <kbd>Enter</kbd> 或 <kbd>Space</kbd> 开始/停止抽奖  
