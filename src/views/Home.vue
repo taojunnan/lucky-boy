@@ -282,7 +282,11 @@ export default {
         } else if (keyCode === 80) {
           // 按下P键，播放音乐
           const audio = this.$refs.audio
-          audio.play()
+          if (audio.paused) {
+            audio.play()
+          } else {
+            audio.pause()
+          }
         }
       }
     }
