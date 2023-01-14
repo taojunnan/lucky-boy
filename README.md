@@ -2,6 +2,10 @@
 
 年会抽奖程序。 [体验地址](http://www.taojunnan.com/lucky-boy/)
 
+## 更新日志
+2023-01-14
+- 更新兔年主题 （2023分支）
+
 ## 功能
 按 <kbd>Enter</kbd> 或 <kbd>Space</kbd> 开始/停止抽奖  
 按 <kbd>Del</kbd> 或 <kbd>Backspace</kbd> 清空抽奖记录  
