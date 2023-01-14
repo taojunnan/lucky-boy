@@ -3,7 +3,7 @@
     <div class="title">中奖信息</div>
 
     <div class="info">
-      <label v-for="(item, index) in info" :key="item.name">
+      <label v-for="(item, index) in info" :key="item.name + index">
         <input tabindex="-1" type="radio" name="prize" :checked="currentIndex === index" @change="handleChange(index)">
         <span class="name">{{ item.name }}({{ item.number }} / {{ item.count }})</span>
 

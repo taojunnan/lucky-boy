@@ -33,6 +33,6 @@ const members = [
   { id: '0939557', name: '用户31' }
 ]
 
-console.log(`一共${members.length}人`)
+console.log(`一共 ${members.length} 人参与抽奖`)
 
 export default members

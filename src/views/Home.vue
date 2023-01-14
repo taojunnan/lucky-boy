@@ -28,6 +28,8 @@ const choosed = JSON.parse(localStorage.getItem('choosed')) || {}
 const normalSpeed = [0.2, 0.08]
 // 快速旋转速度
 const fastSpeed = [5, 1]
+// 默认当前什么奖下标值
+const defaultCurrentIndex = 3
 
 export default {
   name: 'Home',
@@ -37,15 +39,14 @@ export default {
       isStart: false,
       // 显示中奖信息弹窗
       showWinningDialog: false,
-      // 当前抽奖的是什么奖，几等奖，默认四等奖
-      currentIndex: 4,
+      // 当前抽奖的是什么奖，几等奖，默认四等奖，prizeInfo的下标值
+      currentIndex: defaultCurrentIndex,
       // count：这个奖一共多少个，number: 这个奖目前抽了几个了
       prizeInfo: [
-        { level: 0, name: '特等奖', prize: '小米智能音箱', count: 1, number: 0 },
-        { level: 1, name: '一等奖', prize: '小爱音箱', count: 4, number: 0 },
-        { level: 2, name: '二等奖', prize: '护眼台灯', count: 5, number: 0 },
-        { level: 3, name: '三等奖', prize: '充电宝', count: 8, number: 0 },
-        { level: 4, name: '四等奖', prize: '智能插座', count: 10, number: 0 }
+        { level: 0, name: '特等奖', prize: '奖品A', count: 1, number: 0 },
+        { level: 1, name: '一等奖', prize: '奖品B', count: 2, number: 0 },
+        { level: 2, name: '二等奖', prize: '奖品C', count: 4, number: 0 },
+        { level: 3, name: '三等奖', prize: '奖品D', count: 7, number: 0 }
       ],
       // 中奖名单
       prizeList: JSON.parse(localStorage.getItem('prizeList')) || [],
@@ -68,7 +69,7 @@ export default {
     // 初始化下数据
     init () {
       // 从本地存储中获取现在抽到什么奖了
-      this.currentIndex = Number(localStorage.getItem('currentIndex') || 4)
+      this.currentIndex = Number(localStorage.getItem('currentIndex') || defaultCurrentIndex)
 
       // 从本地存储中取每个奖已经抽了多少个了
       this.prizeInfo.forEach((item, index) => {
@@ -253,6 +254,36 @@ export default {
       this.createCanvas()
       this.isStart = false
       this.setSpeed(normalSpeed)
+    },
+    initEvent () {
+      // 键盘事件
+      document.onkeydown = (event) => {
+        const e = event || window.event
+
+        // console.debug('@code = ', e.keyCode)
+        if (e) {
+          const keyCode = e.keyCode
+
+          if (keyCode === 13 || keyCode === 32) {
+          // enter回车键 或 空格键
+            this.handleStart()
+          } else if (keyCode === 46 || keyCode === 8) {
+          // delete或backspace
+            this.handleReset()
+          } else if (keyCode === 76) {
+          // 按下L键，切换中奖信息栏是否显示
+            this.showPrizeList = !this.showPrizeList
+          } else if (keyCode === 80) {
+          // 按下P键，播放音乐
+            const audio = this.$refs.audio
+            if (audio.paused) {
+              audio.play()
+            } else {
+              audio.pause()
+            }
+          }
+        }
+      }
     }
   },
   mounted () {
@@ -262,34 +293,7 @@ export default {
     // 创建中间人员名单词云画布
     this.createCanvas()
 
-    // 键盘事件
-    document.onkeydown = (event) => {
-      const e = event || window.event
-
-      // console.debug('@code = ', e.keyCode)
-      if (e) {
-        const keyCode = e.keyCode
-
-        if (keyCode === 13 || keyCode === 32) {
-          // enter回车键 或 空格键
-          this.handleStart()
-        } else if (keyCode === 46 || keyCode === 8) {
-          // delete或backspace
-          this.handleReset()
-        } else if (keyCode === 76) {
-          // 按下L键，切换中奖信息栏是否显示
-          this.showPrizeList = !this.showPrizeList
-        } else if (keyCode === 80) {
-          // 按下P键，播放音乐
-          const audio = this.$refs.audio
-          if (audio.paused) {
-            audio.play()
-          } else {
-            audio.pause()
-          }
-        }
-      }
-    }
+    this.initEvent()
 
     window.addEventListener('resize', this.resize)
   },
@@ -311,7 +315,7 @@ export default {
   .home {
     width: 100%;
     height: 100%;
-    background: url('~@/assets/img/bg.jpg') no-repeat;
+    background: url('~@/assets/img/bg3.jpg') no-repeat;
     background-size: 100% 100%;
     position: relative;
   }

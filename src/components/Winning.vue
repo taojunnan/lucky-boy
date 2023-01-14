@@ -45,9 +45,9 @@ export default {
     width: 100%;
     height: 100%;
     top: 0;
-    background: url('~@/assets/img/alert.png') no-repeat;
-    background-size: contain;
-    background-position: center;
+    background: url('~@/assets/img/alert2.png') no-repeat;
+    background-size: 50%;
+    background-position: 45% 0;
 
     display: flex;
     flex-direction: column;
@@ -61,28 +61,33 @@ export default {
     justify-content: center;
     align-items: center;
     margin-right: 25px;
-    margin-top: 150px;
+    margin-top: 20px;
+    color: #ffffff;
   }
 
   .content .prize-name {
-    font-size: 42px;
-    font-weight: 700;
+    font-size: 36px;
+    font-weight: 500;
+    letter-spacing: 6px;
   }
 
   .content .prize-detail {
-    font-size: 36px;
-    font-weight: 600;
-    margin-top: 50px;
+    font-size: 42px;
+    font-weight: bolder;
+    margin-top: 30px;
+    letter-spacing: 2px;
   }
 
   .content .name {
+    width: 200px;
     font-size: 32px;
     margin-top: 50px;
     font-weight: bold;
-    color: #fff100;
-    background-color: red;
+    color: #000000;
+    background-color: #ffffff;
     padding: 10px 12px 10px 18px;
-    border-radius: 10px;
+    border-radius: 30px;
     letter-spacing: 6px;
+    text-align: center;
   }
 </style>
